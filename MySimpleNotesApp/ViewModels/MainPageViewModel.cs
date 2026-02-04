@@ -8,13 +8,15 @@ namespace MySimpleNotesApp.ViewModels
     [INotifyPropertyChanged]
     public partial class MainPageViewModel
     {
-        public List<Note> note = new List<Note>();
+        public ObservableCollection<Note> Notes { get; set; } = new();
 
-        [ObservableProperty]
-        string title;
-
-        [ObservableProperty]
-        string content;
+        public async Task LoadNotes()
+        {
+            Notes.Clear();
+            var notes = await App.Database.GetNotesAsync();
+            foreach (var note in notes)
+                Notes.Add(note);
+        }
 
 
         [RelayCommand]

@@ -15,24 +15,29 @@
 
         </Grid>
 
-        <CollectionView Grid.Row="1" VerticalOptions="Fill" VerticalScrollBarVisibility="Never">
+        <CollectionView Grid.Row="1" VerticalOptions="Fill" VerticalScrollBarVisibility="Never" ItemsSource="{Binding Notes}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Border StrokeThickness="5" Margin="0,5" Padding="25" BackgroundColor="LightCyan">
-                        <Label Text="{Binding NoteTitle}" FontSize="20" FontAttributes="Bold"/>
+                        <VerticalStackLayout>
+                            <Label Text="{Binding NoteTitle}" FontSize="20" FontAttributes="Bold"/>
+                            <Label Text="{Binding NoteContent}" LineBreakMode="TailTruncation"/>
+                        </VerticalStackLayout>
                     </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
 
-            <CollectionView.ItemsSource>
-                <x:Array Type="{x:Type local:Note}">
-                    <local:Note NoteTitle="Second Note Tile Second Note Tile Second Note Tile Second Note Tile Second Note Tile Second Note Tile" NoteContent="
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin accumsan lectus eu fermentum ornare. In rutrum dictum mauris. Aliquam faucibus magna non nulla sollicitudin tempor. Pellentesque ac ex hendrerit, ultrices dolor eget, imperdiet ante. Donec a tellus a sem pretium hendrerit vel pretium ex. Sed non fermentum augue. Phasellus pellentesque urna id metus lobortis, vulputate feugiat erat sagittis. Vestibulum scelerisque nisl ac lobortis ullamcorper"/>
-                </x:Array>
-            </CollectionView.ItemsSource>
+            <CollectionView.EmptyView>
+                <VerticalStackLayout VerticalOptions="Center">
+                    <Image Source="emptyview.png" WidthRequest="250" HorizontalOptions="Center"/>
+                    <Label Text="Create your first note!" FontSize="20" HorizontalOptions="Center"/>
+                </VerticalStackLayout>
 
+            </CollectionView.EmptyView>
         </CollectionView>
 
+
+        
     </Grid>
 
 

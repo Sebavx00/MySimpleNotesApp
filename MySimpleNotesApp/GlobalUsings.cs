@@ -18,8 +18,9 @@ global using Microsoft.Maui.Graphics;
 global using Microsoft.Maui.Hosting;
 global using Microsoft.Maui.Storage;
 
-// Dodaj własne namespaces
- global using MySimpleNotesApp.Models;
- global using MySimpleNotesApp.ViewModels;
-//global using MySimpleNotesApp.Views;
-// global using MySimpleNotesApp.Services;
+global using MySimpleNotesApp.Models;
+global using MySimpleNotesApp.ViewModels;
+global using MySimpleNotesApp.Views;
+global using MySimpleNotesApp.Data;
+
+global using SQLite;

@@ -1,4 +1,5 @@
-﻿namespace MySimpleNotesApp
+﻿
+namespace MySimpleNotesApp
 {
     public partial class MainPage : ContentPage
     {

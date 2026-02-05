@@ -24,3 +24,8 @@ global using MySimpleNotesApp.Views;
 global using MySimpleNotesApp.Data;
 
 global using SQLite;
+
+global using UraniumUI.Material;
+global using UraniumUI;
+global using UraniumUI.Icons.MaterialIcons;
+global using UraniumUI.Icons.MaterialSymbols;

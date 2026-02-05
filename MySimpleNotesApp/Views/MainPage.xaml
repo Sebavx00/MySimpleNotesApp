@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MySimpleNotesApp.Models"
+             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              xmlns:vm="clr-namespace:MySimpleNotesApp.ViewModels"
              Shell.NavBarIsVisible="False"
              x:Class="MySimpleNotesApp.MainPage">
@@ -10,7 +11,7 @@
         <Grid Padding="15" ColumnDefinitions="*,Auto" Grid.Row="0">
             <Label Text="Notes" FontSize="44" TextColor="Black" VerticalOptions="Center"/>
             <HorizontalStackLayout Grid.Column="1" Spacing="10">
-                <Button x:Name="addBtn" Text="➕" FontSize="25" CornerRadius="20" WidthRequest="70" BackgroundColor="Grey" Command="{Binding GoToAddNotePageCommand}"/>
+                <Button x:Name="addBtn" Text="➕" StyleClass="FilledTonalButton" FontSize="25" CornerRadius="20" WidthRequest="70" Command="{Binding GoToAddNotePageCommand}"/>
             </HorizontalStackLayout>
 
         </Grid>
@@ -21,7 +22,7 @@
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Border StrokeThickness="5" Margin="0,5" Padding="25" BackgroundColor="LightCyan">
+                    <Border StyleClass="TertiaryContainer" Margin="0,5" Padding="25" >
                         <Border.GestureRecognizers>
                             <TapGestureRecognizer
                         Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainPageViewModel}}, Path=EditNoteCommand}" CommandParameter="{Binding .}" />

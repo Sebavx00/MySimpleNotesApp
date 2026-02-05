@@ -2,42 +2,52 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MySimpleNotesApp.Models"
+             xmlns:vm="clr-namespace:MySimpleNotesApp.ViewModels"
              Shell.NavBarIsVisible="False"
              x:Class="MySimpleNotesApp.MainPage">
 
-    <Grid BackgroundColor="LightGrey" RowDefinitions="Auto,*">
+    <Grid BackgroundColor="LightGrey" RowDefinitions="Auto,*" Padding="15">
         <Grid Padding="15" ColumnDefinitions="*,Auto" Grid.Row="0">
             <Label Text="Notes" FontSize="44" TextColor="Black" VerticalOptions="Center"/>
             <HorizontalStackLayout Grid.Column="1" Spacing="10">
-                <Button x:Name="searchBtn" Text="🔎︎" FontSize="25" CornerRadius="20" WidthRequest="70" BackgroundColor="Grey"/>
                 <Button x:Name="addBtn" Text="➕" FontSize="25" CornerRadius="20" WidthRequest="70" BackgroundColor="Grey" Command="{Binding GoToAddNotePageCommand}"/>
             </HorizontalStackLayout>
 
         </Grid>
 
-        <CollectionView Grid.Row="1" VerticalOptions="Fill" VerticalScrollBarVisibility="Never" ItemsSource="{Binding Notes}">
+        <CollectionView Grid.Row="1"
+                ItemsSource="{Binding Notes}"
+                VerticalOptions="Fill">
+
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Border StrokeThickness="5" Margin="0,5" Padding="25" BackgroundColor="LightCyan">
-                        <VerticalStackLayout>
-                            <Label Text="{Binding NoteTitle}" FontSize="20" FontAttributes="Bold"/>
-                            <Label Text="{Binding NoteContent}" LineBreakMode="TailTruncation"/>
-                        </VerticalStackLayout>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainPageViewModel}}, Path=EditNoteCommand}" CommandParameter="{Binding .}" />
+                        </Border.GestureRecognizers>
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Grid.Column="0" Text="{Binding NoteTitle}" FontSize="20" FontAttributes="Bold" TextColor="Black"/>
+
+                            <Button Grid.Column="1" Text="Delete" TextColor="Black" BackgroundColor="Transparent" HorizontalOptions="End" Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainPageViewModel}}, Path=DeleteNoteCommand}" CommandParameter="{Binding .}"/>
+                        </Grid>
+
                     </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
 
             <CollectionView.EmptyView>
                 <VerticalStackLayout VerticalOptions="Center">
-                    <Image Source="emptyview.png" WidthRequest="250" HorizontalOptions="Center"/>
-                    <Label Text="Create your first note!" FontSize="20" HorizontalOptions="Center"/>
+                    <Image Source="emptyview.png" WidthRequest="250" HorizontalOptions="Center" />
+                    <Label Text="Create your first note!" FontSize="20" HorizontalOptions="Center" />
                 </VerticalStackLayout>
-
             </CollectionView.EmptyView>
+
         </CollectionView>
 
 
-        
+
+
     </Grid>
 
 

@@ -5,10 +5,16 @@
              x:Class="MySimpleNotesApp.Views.AddNotePage"
              Title="AddNotePage">
 
-    <VerticalStackLayout Padding="20" Spacing="12">
-        <Entry Placeholder="Tytuł" Text="{Binding Title}" />
-        <Editor Placeholder="Treść notatki" Text="{Binding Content}" HeightRequest="150"/>
-        <Button Text="Zapisz" Command="{Binding SaveCommand}" />
-    </VerticalStackLayout>
+    <Grid RowDefinitions="Auto,* ,Auto" Padding="20" RowSpacing="15">
+
+        <Entry Grid.Row="0" Placeholder="Tytuł" Text="{Binding Title}" />
+
+        <Editor Grid.Row="1" Text="{Binding Content}" AutoSize="Disabled" VerticalOptions="Fill" HorizontalOptions="Fill" BackgroundColor="LightYellow" TextColor="Black"/>
+
+        <Button Grid.Row="2" Text="Zapisz" Command="{Binding SaveCommand}" />
+
+    </Grid>
+
+
 
 </ContentPage>
